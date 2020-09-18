@@ -29,20 +29,20 @@ class CounterViewModel(application: Application) : AndroidViewModel(application)
     fun onAdd() {
         _currentCount.value = _currentCount.value?.plus(1)
         _totalCount.value = _totalCount.value?.plus(1)
-        preferences.edit().putInt(CURRENT_KEY, _currentCount.value!!).apply()
-        preferences.edit().putInt(TOTAL_KEY, _totalCount.value!!).apply()
+        preferences.edit().putInt(CURRENT_KEY, _currentCount.value ?: 0).apply()
+        preferences.edit().putInt(TOTAL_KEY, _totalCount.value ?: 0).apply()
     }
 
     fun onSubtract() {
         _currentCount.value = _currentCount.value?.minus(1)
-        preferences.edit().putInt(CURRENT_KEY, _currentCount.value!!).apply()
+        preferences.edit().putInt(CURRENT_KEY, _currentCount.value ?: 0).apply()
     }
 
     fun onReset() {
         _currentCount.value = 0
         _totalCount.value = 0
-        preferences.edit().putInt(CURRENT_KEY, _currentCount.value!!).apply()
-        preferences.edit().putInt(TOTAL_KEY, _totalCount.value!!).apply()
+        preferences.edit().putInt(CURRENT_KEY, 0).apply()
+        preferences.edit().putInt(TOTAL_KEY, 0).apply()
     }
 
     companion object {

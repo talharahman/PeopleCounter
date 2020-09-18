@@ -95,7 +95,6 @@
             android:id="@+id/add_button"
             android:layout_width="@dimen/button_width"
             android:layout_height="@dimen/button_height"
-            android:layout_marginStart="244dp"
             android:layout_marginEnd="@dimen/side_margin_bottom"
             android:layout_marginBottom="@dimen/margin_vertical"
             android:background="@color/colorPrimary"
