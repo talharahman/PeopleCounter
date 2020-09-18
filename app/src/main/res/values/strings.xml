@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PeopleCounter</string>
+    <string name="add">+</string>
+    <string name="subtract">-</string>
+    <string name="reset">Reset</string>
+    <string name="total_format">Total: %d</string>
+    <string name="current_format">%d people</string>
+</resources>

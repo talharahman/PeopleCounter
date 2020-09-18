@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="android.graphics.Color"/>
+        <variable
+            name="viewModel"
+            type="com.example.peoplecounter.CounterViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <Button
+            android:id="@+id/reset_button"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="@dimen/margin_vertical"
+            android:layout_marginEnd="@dimen/side_margin_top"
+            android:background="#000000"
+            android:textColor="#c7c7c7"
+            android:textStyle="bold"
+            android:onClick="@{() -> viewModel.onReset()}"
+            app:layout_constraintBottom_toTopOf="@id/guideline_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteY="48dp"
+            android:text="@string/reset" />
+
+        <TextView
+            android:id="@+id/total_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin_top"
+            android:layout_marginTop="@dimen/margin_vertical"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="32sp"
+            android:text="@{@string/total_format(viewModel.totalCount)}"
+            app:layout_constraintBottom_toTopOf="@id/guideline_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteY="48dp"
+            tools:text="Total: 20" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="96dp" />
+
+        <TextView
+            android:id="@+id/current_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@{viewModel.currentCount > 15 ? Color.RED : @color/colorPrimaryDark}"
+            android:textSize="36sp"
+            android:text="@{@string/current_format(viewModel.currentCount)}"
+            app:layout_constraintBottom_toTopOf="@id/guideline_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_top"
+            app:layout_constraintVertical_bias="0.498"
+            tools:text="14 people" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="96dp" />
+
+        <Button
+            android:id="@+id/subtract_button"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginStart="@dimen/side_margin_bottom"
+            android:layout_marginBottom="@dimen/margin_vertical"
+            android:background="@color/colorPrimary"
+            android:text="@string/subtract"
+            android:textColor="#fff"
+            android:textSize="24sp"
+            android:onClick="@{() -> viewModel.onSubtract()}"
+            android:visibility="@{viewModel.currentCount == 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_bottom" />
+
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="@dimen/button_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginStart="244dp"
+            android:layout_marginEnd="@dimen/side_margin_bottom"
+            android:layout_marginBottom="@dimen/margin_vertical"
+            android:background="@color/colorPrimary"
+            android:text="@string/add"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:onClick="@{() -> viewModel.onAdd()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintTop_toBottomOf="@id/guideline_bottom" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
